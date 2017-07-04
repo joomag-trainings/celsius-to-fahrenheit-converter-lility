@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Converter</title>
+    <style>
+        body{
+            background-image: url("https://s-media-cache-ak0.pinimg.com/736x/6d/70/2c/6d702c1f2daa39561ff2ccf8b4647860--winter-wallpaper-hd-wallpaper.jpg");
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        #leftCol{
+            display: flex;
+            width: 50px;
+            height: 400px;
+            background-color: red;
+            margin: 100px;
+            border: 1px solid black;
+        }
+        #leftTop, #rightTop{
+            display: flex;
+            width: 50px;
+            height: 200px;
+            background-color: lightcyan;
+            margin: 100px;
+            position: absolute;
+            border: 1px solid black;
+
+        }
+        #main{
+            display: flex;
+            flex-direction: row;
+            align-self: center;
+            height: auto;
+            margin-left: 18%;
+            margin-top: 10%;
+
+        }
+        #body{
+            display: flex;
+            margin: 100px;
+            flex-direction: column;
+        }
+        #rightCol{
+            display: flex;
+            width: 50px;
+            height: 400px;
+            background-color: blue;
+            margin: 100px;
+            border: 1px solid black;
+        }
+        input{
+            width: 250px;
+            height: 30px;
+            border: 3px solid darkblue;
+            font-size: 20px;
+        }
+        button{
+            width: 100px;
+            height: 30px;
+            align-self: center;
+            font-weight: bold;
+            font-style: oblique;
+            font-size: large;
+            margin: 20px;
+            margin-bottom: 10px;
+            background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #408c99), color-stop(1, #599bb3));
+            background:-moz-linear-gradient(top, #408c99 5%, #599bb3 100%);
+            background:-webkit-linear-gradient(top, #408c99 5%, #599bb3 100%);
+            background:-o-linear-gradient(top, #408c99 5%, #599bb3 100%);
+            background:-ms-linear-gradient(top, #408c99 5%, #599bb3 100%);
+            background:linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
+            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#408c99', endColorstr='#599bb3',GradientType=0);
+            background-color:#408c99;
+        }
+        .paragraphs{
+            display: flex;
+            flex-direction: row;
+        }
+        #first{
+            font-size: 30px;
+            font-weight: bold;
+            font-style: oblique;
+            color: darkblue;
+            margin: auto;
+            margin-bottom: 30px;
+        }
+        #output{
+            border: 3px solid darkblue;
+        }
+    </style>
+</head>
+
+<body>
+<div id="main">
+    <div>
+
+        <div id="leftTop"></div>
+        <div id="leftCol"></div>
+
+    </div>
+    <div id="body">
+        <div class="paragraphs">
+            <p id="first"> Convert from °C to °F</p>
+        </div>
+        <input type="text" name="number" id="input">
+        <p id="output"></p>
+        <button id=" changebutton" onclick='bool()'> <-> </button>
+    </div>
+    <div>
+        <div id="rightTop"></div>
+        <div id="rightCol"></div>
+    </div>
+</div>
+<script>
+
+    var changeButton = document.getElementById('changebutton');
+    var input = document.getElementById('input');
+    var output = document.getElementById('output');
+    var a = true;
+    var first = document.getElementById('first');
+    var second = document.getElementById('second');
+    var leftCol = document.getElementById('leftCol');
+    var rightCol = document.getElementById('rightCol');
+    var leftTop = document.getElementById('leftTop');
+    var rightTop = document.getElementById('rightTop');
+
+
+    function convertCtoF() {
+
+        if( a === true){
+            output.textContent  = parseInt(input.value)*9/5+32 + ' °F';
+            leftTop.style.height = 200 - parseInt(input.value) + 'px';
+            rightTop.style.height = 200 - parseInt(input.value) + 'px';
+            if(input.value==''){
+                output.textContent = '';
+            }
+        } else {
+            output.textContent  = parseInt((input.value)-32)*5/9 + ' °C';
+            leftTop.style.height = 200 - parseInt(input.value) + 'px';
+            rightTop.style.height = 200 - parseInt(input.value) + 'px';
+            if(input.value==''){
+                output.textContent = '';
+            }
+        }
+    }
+    function bool() {
+
+        if(a){
+            input.value= '';
+            output.textContent = '';
+            a = false;
+            first.textContent = 'Convert from °F to °C';
+            leftCol.style.backgroundColor = 'blue';
+            rightCol.style.backgroundColor = 'red';
+
+        } else {
+            a = true;
+            first.textContent = 'Convert from °C to °F';
+            leftCol.style.backgroundColor = 'red';
+            rightCol.style.backgroundColor = 'blue';
+        }
+    }
+    input.addEventListener('keyup', convertCtoF);
+
+</script>
+
+</body>
+</html>
